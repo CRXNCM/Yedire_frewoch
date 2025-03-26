@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+  <head>
+    <title>Gallery - Yedire Frewoch</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,300i,400,500,600,700,800,900,900i%7CRoboto:400%7CRubik:100,400,700">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      .location-tabs {
+        margin-bottom: 30px;
+      }
+      .location-tabs .nav-link {
+        border-radius: 0;
+        padding: 10px 15px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .location-tabs .nav-link.active {
+        background-color: #756aee;
+        color: #fff;
+      }
+      
+      /* Gallery layout styles */
+      .gallery-section {
+        padding: 60px 0;
+      }
+      
+      .gallery-card {
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+        height: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      }
+      
+      .gallery-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      }
+      
+      .thumbnail-classic-figure {
+        overflow: hidden;
+        position: relative;
+        padding-bottom: 66.67%; /* 3:2 aspect ratio for landscape images */
+        height: 0;
+      }
+      
+      .thumbnail-classic-figure img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      
+      .gallery-card:hover .thumbnail-classic-figure img {
+        transform: scale(1.05);
+      }
+      
+      .card-body {
+        padding: 15px;
+      }
+      
+      .card-title {
+        font-size: 18px;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      
+      .card-text {
+        font-size: 14px;
+        margin-bottom: 15px;
+        color: #6c757d;
+      }
+      
+      /* School sidebar styles */
+      .schools-sidebar {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.05);
+        position: sticky;
+        top: 100px;
+      }
+      
+      .schools-sidebar h4 {
+        border-bottom: 2px solid #756aee;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+      
+      .school-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 500px;
+        overflow-y: auto;
+      }
+      
+      .school-list li {
+        padding: 4px 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+      
+      .school-list li:last-child {
+        border-bottom: none;
+      }
+      
+      .school-list a {
+        color: #495057;
+        display: block;
+        transition: all 0.3s ease;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 15px;
+      }
+      
+      .school-list a:hover, .school-list a.active {
+        background-color: #756aee;
+        color: #fff;
+        text-decoration: none;
+      }
+      
+      /* School gallery display */
+      .school-gallery {
+        display: none;
+        animation: fadeIn 0.5s ease;
+      }
+      
+      .school-gallery.active {
+        display: block;
+      }
+      
+      .gallery-category-title {
+        margin: 0 0 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #756aee;
+        font-weight: 600;
+        color: #333;
+      }
+      
+      .school-description {
+        margin-bottom: 25px;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      
+      /* Gallery grid layout for 5+ images */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+      }
+      
+      /* Responsive adjustments */
+      @media (max-width: 1199.98px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      
+      @media (max-width: 767.98px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .schools-sidebar {
+          position: relative;
+          top: 0;
+          margin-bottom: 30px;
+        }
+        
+        .school-list {
+          max-height: 300px;
+        }
+      }
+      
+      /* Animation */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      /* Lightbox improvements */
+      .modal-xl {
+        max-width: 90%;
+      }
+      
+      #lightboxImage {
+        max-height: 80vh;
+        object-fit: contain;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    
+    <!-- Page Header - Using Web Component -->
+    <site-header></site-header>
+
+    <!-- Breadcrumbs -->
+    <section class="parallax-container" data-parallax-img="images/bg-breadcrumbs-about.jpg">
+      <div class="parallax-content breadcrumbs-custom context-dark">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12 col-lg-9">
+              <h2 class="breadcrumbs-custom-title">Gallery</h2>
+              <ul class="breadcrumbs-custom-path">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Gallery</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- School Gallery Section -->
+    <div class="row mt-5">
+      <!-- Sidebar with School Names -->
+      <div class="col-lg-3">
+        <div class="schools-sidebar">
+          <h4>Our Schools</h4>
+          <ul class="school-list" id="schoolList">
+            <li><a href="#" class="school-link active" data-school="school1">Addis Ababa School</a></li>
+            <li><a href="#" class="school-link" data-school="school2">Mekelle Primary School</a></li>
+            <li><a href="#" class="school-link" data-school="school3">Bahir Dar Elementary</a></li>
+            <li><a href="#" class="school-link" data-school="school4">Gondar Community School</a></li>
+            <li><a href="#" class="school-link" data-school="school5">Hawassa Primary</a></li>
+            <li><a href="#" class="school-link" data-school="school6">Dire Dawa Elementary</a></li>
+            <li><a href="#" class="school-link" data-school="school7">Jimma Community School</a></li>
+            <li><a href="#" class="school-link" data-school="school8">Harar Elementary</a></li>
+            <li><a href="#" class="school-link" data-school="school9">Adama Primary School</a></li>
+            <li><a href="#" class="school-link" data-school="school10">Dessie Elementary</a></li>
+            <li><a href="#" class="school-link" data-school="school11">Axum Community School</a></li>
+            <li><a href="#" class="school-link" data-school="school12">Jijiga Primary</a></li>
+            <li><a href="#" class="school-link" data-school="school13">Sodo Elementary</a></li>
+            <li><a href="#" class="school-link" data-school="school14">Nekemte Community School</a></li>
+          </ul>
+        </div>
+      </div>
+            
+      <!-- Gallery Section -->
+<!-- Gallery Section -->
+    <section class="section section-lg bg-default">
+      <div class="container">
+        <!-- Header content -->
+        
+        <div class="row mt-5">
+          <!-- Sidebar with School Names -->
+          <div class="col-lg-3">
+            <div class="schools-sidebar">
+              <h4>Our Schools</h4>
+              <ul class="school-list" id="schoolList">
+                <!-- School list will be generated here -->
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Gallery Content Area -->
+          <div class="col-lg-9">
+            <div id="galleryContainer">
+              <!-- School galleries will be generated here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+      <!-- Image Lightbox -->
+      <div class="modal fade" id="imageLightbox" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="lightboxTitle">Image Preview</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-center">
+              <img id="lightboxImage" src="" alt="Lightbox Image" class="img-fluid">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <a id="downloadImageBtn" href="#" class="btn btn-primary" download>Download Image</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <div class="row mt-5">
+    <!-- Gallery Section -->
+    <section class="section section-lg bg-default">
+      <div class="container">
+        <div class="row row-30 justify-content-center">
+          <div class="col-md-10 col-lg-6 col-xl-5">
+            <h3 class="wow-outer"><span class="wow slideInDown">Morning Meal Program</span></h3>
+          </div>
+          <div class="col-md-10 col-lg-6 col-xl-7">
+            <div class="wow-outer">
+              <p class="wow slideInDown">Our gallery showcases the impact of our morning voluntary feeding program across 10 different schools, providing nutritious meals to children in need.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horizontal Location Tabs -->
+        <div class="row">
+          <div class="col-12">
+            <ul class="nav nav-pills location-tabs" id="locationTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="all-tab" data-toggle="pill" href="#all" role="tab" aria-controls="all" aria-selected="true">All Locations</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="region1-tab" data-toggle="pill" href="#region1" role="tab" aria-controls="region1" aria-selected="false">Region 1</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="region2-tab" data-toggle="pill" href="#region2" role="tab" aria-controls="region2" aria-selected="false">Region 2</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="region3-tab" data-toggle="pill" href="#region3" role="tab" aria-controls="region3" aria-selected="false">Region 3</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="locationTabContent">
+          <!-- All Locations Tab -->
+          <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+            <!-- Region 1 Schools -->
+            <h4 class="gallery-category-title">Region 1 Schools</h4>
+            <div class="row">
+              <!-- Location 1 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school1-gallery-1.jpg" alt="Morning Meal Program - Location 1" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Addis Ababa School</h5>
+                    <p class="card-text">Volunteers serving nutritious breakfast to children at our flagship location.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal1">View Gallery</a>
+                      <small class="text-muted">120 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Location 2 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school2-gallery-1.jpg" alt="Food Preparation - Location 2" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Mekelle Primary School</h5>
+                    <p class="card-text">Our volunteers preparing fresh, nutritious meals early in the morning.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal2">View Gallery</a>
+                      <small class="text-muted">85 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Location 3 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school3-gallery-1.jpg" alt="Meal Distribution - Location 3" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Bahir Dar Elementary</h5>
+                    <p class="card-text">Local community members helping distribute meals to school children.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal3">View Gallery</a>
+                      <small class="text-muted">95 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Region 2 Schools -->
+            <h4 class="gallery-category-title">Region 2 Schools</h4>
+            <div class="row">
+              <!-- Location 4 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school4-gallery-1.jpg" alt="Breakfast Line - Location 4" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Gondar Community School</h5>
+                    <p class="card-text">Students lining up for their morning meal at our Gondar location.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal4">View Gallery</a>
+                      <small class="text-muted">110 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Location 5 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school5-gallery-1.jpg" alt="Volunteer Team - Location 5" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Hawassa Primary</h5>
+                    <p class="card-text">The dedicated team that makes our morning meal program possible.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal5">View Gallery</a>
+                      <small class="text-muted">75 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Location 6 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school6-gallery-1.jpg" alt="Meal Preparation - Location 6" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Dire Dawa Elementary</h5>
+                    <p class="card-text">Fresh ingredients being prepared for nutritious morning meals.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal6">View Gallery</a>
+                      <small class="text-muted">90 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Region 3 Schools -->
+            <h4 class="gallery-category-title">Region 3 Schools</h4>
+            <div class="row">
+              <!-- Location 7-9 would follow the same pattern -->
+              
+              <!-- Location 10 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school10-gallery-1.jpg" alt="Healthy Meals - Location 10" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Jimma Community School</h5>
+                    <p class="card-text">Nutritious food prepared for students at our newest location.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal10">View Gallery</a>
+                      <small class="text-muted">65 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Region 1 Tab -->
+          <div class="tab-pane fade" id="region1" role="tabpanel" aria-labelledby="region1-tab">
+            <div class="row">
+              <!-- Location 1 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school1-gallery-1.jpg" alt="Morning Meal Program - Location 1" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Addis Ababa School</h5>
+                    <p class="card-text">Volunteers serving nutritious breakfast to children at our flagship location.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal1">View Gallery</a>
+                      <small class="text-muted">120 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Location 2 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school2-gallery-1.jpg" alt="Food Preparation - Location 2" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Mekelle Primary School</h5>
+                    <p class="card-text">Our volunteers preparing fresh, nutritious meals early in the morning.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal2">View Gallery</a>
+                      <small class="text-muted">85 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Location 3 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school3-gallery-1.jpg" alt="Meal Distribution - Location 3" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Bahir Dar Elementary</h5>
+                    <p class="card-text">Local community members helping distribute meals to school children.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal3">View Gallery</a>
+                      <small class="text-muted">95 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Region 2 Tab -->
+          <div class="tab-pane fade" id="region2" role="tabpanel" aria-labelledby="region2-tab">
+            <div class="row">
+              <!-- Location 4 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school4-gallery-1.jpg" alt="Breakfast Line - Location 4" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Gondar Community School</h5>
+                    <p class="card-text">Students lining up for their morning meal at our Gondar location.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal4">View Gallery</a>
+                      <small class="text-muted">110 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Location 5 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school5-gallery-1.jpg" alt="Volunteer Team - Location 5" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Hawassa Primary</h5>
+                    <p class="card-text">The dedicated team that makes our morning meal program possible.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal5">View Gallery</a>
+                      <small class="text-muted">75 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Location 6 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school6-gallery-1.jpg" alt="Meal Preparation - Location 6" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Dire Dawa Elementary</h5>
+                    <p class="card-text">Fresh ingredients being prepared for nutritious morning meals.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal6">View Gallery</a>
+                      <small class="text-muted">90 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Region 3 Tab -->
+          <div class="tab-pane fade" id="region3" role="tabpanel" aria-labelledby="region3-tab">
+            <div class="row">
+              <!-- Location 10 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card gallery-card shadow-sm">
+                  <div class="thumbnail-classic-figure">
+                    <img src="images/school10-gallery-1.jpg" alt="Healthy Meals - Location 10" class="card-img-top" width="370" height="252"/>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Jimma Community School</h5>
+                    <p class="card-text">Nutritious food prepared for students at our newest location.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a class="button button-sm button-primary" href="#" data-toggle="modal" data-target="#galleryModal10">View Gallery</a>
+                      <small class="text-muted">65 children served daily</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Modals (would be populated with actual images) -->
+    <div class="modal fade" id="galleryModal1" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Addis Ababa School Gallery</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="carouselGallery1" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="images/school1-gallery-1-1200x800.jpg" class="d-block w-100" alt="Gallery Image 1">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/school1-gallery-2-1200x800.jpg" class="d-block w-100" alt="Gallery Image 2">
+                </div>
+                <!-- More carousel items would be added here -->
+              </div>
+              <a class="carousel-control-prev" href="#carouselGallery1" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselGallery1" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Additional modals would be created for each location -->
+
+    <!-- Image Lightbox (New) -->
+    <div class="modal fade" id="imageLightbox" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="lightboxTitle">Image Preview</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+            <img id="lightboxImage" src="" alt="Lightbox Image" class="img-fluid">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a id="downloadImageBtn" href="#" class="btn btn-primary" download>Download Image</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Footer - Using Web Component -->
+    <site-footer></site-footer>
+
+    <div class="snackbars" id="form-output-global"></div>
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <!-- Add the components script -->
+    <script src="js/components.js"></script>
+    
+    <!-- Gallery Functionality Script (New) -->
+         <!-- Add this JavaScript to your existing script section -->
+    <script>
+      $(document).ready(function() {
+        // School selection functionality
+        $('.school-link').on('click', function(e) {
+          e.preventDefault();
+          
+          // Remove active class from all links and hide all galleries
+          $('.school-link').removeClass('active');
+          $('.school-gallery').removeClass('active');
+          
+          // Add active class to clicked link
+          $(this).addClass('active');
+          
+          // Show the corresponding gallery
+          const schoolId = $(this).data('school');
+          $('#' + schoolId).addClass('active');
+          
+          // Scroll to gallery on mobile
+          if ($(window).width() < 992) {
+            $('html, body').animate({
+              scrollTop: $('#' + schoolId).offset().top - 100
+            }, 500);
+          }
+        });
+        
+        // Image lightbox functionality
+        $('.gallery-image').on('click', function(e) {
+          e.preventDefault();
+          
+          const imgSrc = $(this).attr('href');
+          const imgTitle = $(this).data('title');
+          
+          $('#lightboxImage').attr('src', imgSrc);
+          $('#lightboxTitle').text(imgTitle);
+          $('#downloadImageBtn').attr('href', imgSrc);
+          
+          $('#imageLightbox').modal('show');
+        });
+      });
+    </script>
+    <script>
+      // Initialize image lightbox functionality
+      $(document).ready(function() {
+        // Enable clicking on carousel images to open in lightbox
+        $('.carousel-item img').click(function() {
+          var imgSrc = $(this).attr('src');
+          var imgTitle = $(this).attr('alt');
+          
+          $('#lightboxImage').attr('src', imgSrc);
+          $('#lightboxTitle').text(imgTitle);
+          $('#downloadImageBtn').attr('href', imgSrc);
+          
+          $('#imageLightbox').modal('show');
+        });
+        
+        // Handle download gallery button
+        $('#downloadGalleryBtn').click(function(e) {
+          e.preventDefault();
+          alert('Gallery download functionality will be implemented here. This would typically create a zip file of all gallery images.');
+        });
+        
+        // Add image counter to carousels
+        $('.carousel').each(function() {
+          var $carousel = $(this);
+          var $items = $carousel.find('.carousel-item');
+          var $indicators = $('<ol class="carousel-indicators"></ol>');
+          
+          for (var i = 0; i < $items.length; i++) {
+            var isActive = i === 0 ? 'active' : '';
+            $indicators.append('<li data-target="#' + $carousel.attr('id') + '" data-slide-to="' + i + '" class="' + isActive + '"></li>');
+          }
+          
+          $carousel.prepend($indicators);
+        });
+        
+        // Filter functionality for location tabs
+        $('#locationTabs a').on('click', function (e) {
+          e.preventDefault();
+          $(this).tab('show');
+        });
+      });
+    </script>
+    <script>
+        // Gallery generator function
+        function generateGalleries() {
+          // Create sidebar with school list
+          const schoolList = document.getElementById('schoolList');
+          schoolList.innerHTML = '';
+          
+          // Create gallery containers
+          const galleryContainer = document.getElementById('galleryContainer');
+          galleryContainer.innerHTML = '';
+          
+          // Process each school
+          schoolData.forEach((school, index) => {
+            // Add to sidebar
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<a href="#" class="school-link ${index === 0 ? 'active' : ''}" data-school="${school.id}">${school.name}</a>`;
+            schoolList.appendChild(listItem);
+            
+            // Create gallery section
+            const gallerySection = document.createElement('div');
+            gallerySection.id = school.id;
+            gallerySection.className = `school-gallery ${index === 0 ? 'active' : ''}`;
+            
+            // Add gallery header
+            gallerySection.innerHTML = `
+              <h4 class="gallery-category-title">${school.name}</h4>
+              <p class="school-description">${school.description}</p>
+              <div class="row gallery-images" id="${school.id}-images">
+                <div class="col-12 text-center py-5">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <p class="mt-2">Loading gallery...</p>
+                </div>
+              </div>
+            `;
+            
+            // Add gallery to container
+            galleryContainer.appendChild(gallerySection);
+          });
+          
+          // Initialize click handlers
+          initializeGalleryEvents();
+          
+          // Load first school images
+          loadImagesForSchool(schoolData[0].id);
+        }
+
+        // Function to handle school selection
+        function initializeGalleryEvents() {
+          // School selection functionality
+          $('.school-link').on('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all links and hide all galleries
+            $('.school-link').removeClass('active');
+            $('.school-gallery').removeClass('active');
+            
+            // Add active class to clicked link
+            $(this).addClass('active');
+            
+            // Show the corresponding gallery
+            const schoolId = $(this).data('school');
+            $('#' + schoolId).addClass('active');
+            
+            // Load images if not already loaded
+            loadImagesForSchool(schoolId);
+            
+            // Scroll to gallery on mobile
+            if ($(window).width() < 992) {
+              $('html, body').animate({
+                scrollTop: $('#' + schoolId).offset().top - 100
+              }, 500);
+            }
+          });
+        }
+
+        // Function to load images for a specific school
+        function loadImagesForSchool(schoolId) {
+          const galleryContainer = document.getElementById(`${schoolId}-images`);
+          const school = schoolData.find(s => s.id === schoolId);
+          
+          // Check if images are already loaded (skip if already loaded)
+          if (galleryContainer.querySelector('.gallery-card')) {
+            return;
+          }
+          
+          // Use the image manifest approach - create a JSON file that lists all images
+          fetch(`images/${schoolId}/manifest.json`)
+            .then(response => {
+              if (!response.ok) {
+                // If manifest doesn't exist, fall back to predefined list
+                return { images: getDefaultImageList(schoolId) };
+              }
+              return response.json();
+            })
+            .then(data => {
+              displaySchoolImages(schoolId, data.images);
+            })
+            .catch(error => {
+              console.error('Error loading images:', error);
+              // Fall back to predefined list on error
+              displaySchoolImages(schoolId, getDefaultImageList(schoolId));
+            });
+        }
+
+        // Function to display school images
+        function displaySchoolImages(schoolId, imageList) {
+          const galleryContainer = document.getElementById(`${schoolId}-images`);
+          const school = schoolData.find(s => s.id === schoolId);
+          
+          // Clear loading indicator
+          galleryContainer.innerHTML = '';
+          
+          // If no images found
+          if (!imageList || imageList.length === 0) {
+            galleryContainer.innerHTML = `
+              <div class="col-12 text-center py-5">
+                <p>No images available for this school.</p>
+              </div>
+            `;
+            return;
+          }
+          
+          // Add each image to the gallery
+          imageList.forEach((imageName, index) => {
+            const imageCard = document.createElement('div');
+            imageCard.className = 'col-sm-6 col-lg-4';
+            imageCard.innerHTML = `
+              <div class="card gallery-card shadow-sm">
+                <div class="thumbnail-classic-figure">
+                  <img src="images/${schoolId}/${imageName}" 
+                      alt="${school.name} - Image ${index + 1}" 
+                      class="card-img-top" width="370" height="250"
+                      onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">${getImageTitle(imageName)}</h5>
+                  <a class="button button-sm button-primary gallery-image" 
+                    href="images/${schoolId}/${imageName}" 
+                    data-title="${school.name} - ${getImageTitle(imageName)}">View Larger</a>
+                </div>
+              </div>
+            `;
+            galleryContainer.appendChild(imageCard);
+          });
+          
+          // Initialize lightbox for the new images
+          initializeLightbox();
+        }
+
+        // Helper function to get a nice title from filename
+        function getImageTitle(filename) {
+          // Remove extension
+          let title = filename.replace(/\.[^/.]+$/, "");
+          // Replace underscores and dashes with spaces
+          title = title.replace(/[_-]/g, " ");
+          // Capitalize first letter of each word
+          title = title.replace(/\b\w/g, l => l.toUpperCase());
+          return title;
+        }
+
+        // Function to get default image list when manifest is not available
+        function getDefaultImageList(schoolId) {
+          const school = schoolData.find(s => s.id === schoolId);
+          
+          // If school has predefined images, use those
+          if (school.images && school.images.length > 0) {
+            return school.images;
+          }
+          
+          // Otherwise, use a standard naming convention as fallback
+          // This assumes images are named 1.jpg, 2.jpg, etc.
+          const imageCount = school.imageCount || 5;
+          const images = [];
+          
+          for (let i = 1; i <= imageCount; i++) {
+            images.push(`${i}.jpg`);
+          }
+          
+          return images;
+        }
+
+        // Initialize lightbox functionality
+        function initializeLightbox() {
+          $('.gallery-image').off('click').on('click', function(e) {
+            e.preventDefault();
+            
+            const imgSrc = $(this).attr('href');
+            const imgTitle = $(this).data('title');
+            
+            $('#lightboxImage').attr('src', imgSrc);
+            $('#lightboxTitle').text(imgTitle);
+            $('#downloadImageBtn').attr('href', imgSrc);
+            
+            $('#imageLightbox').modal('show');
+          });
+        }
+
+    </script>
+    <!-- Add the school data and gallery generator scripts -->
+<!-- Add the school data and gallery generator scripts -->
+    <script src="js/school-data.js"></script>
+    <script>
+      // Add this to your script
+    $(document).ready(function() {
+      console.log("Document ready");
+      
+      // Check if schoolData is available
+      if (typeof schoolData !== 'undefined') {
+        console.log("School data found:", schoolData.length + " schools");
+        generateGalleries();
+      } else {
+        console.error("School data not found! Make sure school-data.js is loaded correctly.");
+        // Add a visible error message
+        $('#galleryContainer').html('<div class="alert alert-danger">Error: School data not found. Please check the console for details.</div>');
+      }
+    });
+
+      $(document).ready(function() {
+        // Generate all galleries
+        generateGalleries();
+      });
+    </script>
+
+  </body>
+</html>
