@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,300i,400,500,600,700,800,900,900i%7CRoboto:400%7CRubik:100,400,700">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      /* Lightbox styles with smooth animations */
+      .img-lightbox {
+        cursor: pointer;
+        display: block;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .img-lightbox img {
+        transition: transform 0.5s ease;
+      }
+      
+      .img-lightbox:hover img {
+        transform: scale(1.05);
+      }
+      
+      .img-lightbox::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .img-lightbox:hover::after {
+        opacity: 1;
+      }
+      
+      .img-lightbox::before {
+        content: '+';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 30px;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      
+      .img-lightbox:hover::before {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+      
+      /* Modal/Lightbox container with smooth animations */
+      .modal-lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0);
+        transition: background-color 0.4s ease;
+        opacity: 0;
+      }
+      
+      .modal-lightbox.show {
+        background-color: rgba(0, 0, 0, 0.9);
+        opacity: 1;
+      }
+      
+      .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%) scale(0.9);
+        opacity: 0;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      
+      .modal-lightbox.show .modal-content {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+      }
+      
+      .close-lightbox {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        opacity: 0;
+        transition: color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
+        transform: rotate(0deg);
+      }
+      
+      .modal-lightbox.show .close-lightbox {
+        opacity: 1;
+      }
+      
+      .close-lightbox:hover,
+      .close-lightbox:focus {
+        color: #fff;
+        text-decoration: none;
+        transform: rotate(90deg);
+      }
+    </style>
+    
+    
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+  </head>
+  <body>
+    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+     <!-- Page Header - Using Web Component -->
+    <site-header></site-header>
+      
+    <!-- Swiper-->
+    <section class="section section-lg section-main-bunner section-main-bunner-filter">
+      <div class="main-bunner-img" style="background-image: url(&quot;images/bg-bunner-2.png&quot;); background-size: cover;"></div>
+      <div class="main-bunner-inner">
+        <div class="container">
+          <div class="row row-50 justify-content-lg-center align-items-lg-center">
+            <div class="col-lg-12">
+              <div class="bunner-content-modern text-center">
+                <h1 class="main-bunner-title">One for another!</h1>
+                <p>Wesen Volunteer Charitable Development Organization</p>
+                <h1 class="main-bunner-title">አንዳችን ለአንዳችን!</h1>
+                <p>ወሰን የበጎ አድራጎት ልማት ድርጅት</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-lg bg-gray-1 our-team">
+      <div class="container">
+        <h3 class="text-center">Gallery</h3>
+        <div class="row no-gutters">
+          <div class="col-md-6 col-lg-3">
+            <div class="team-classic">
+              <div class="team-classic-figure"><img src="images/gallery/animate-img-1.jpg" alt="" width="390" height="252"/>
+                <ul class="team-classic-soc-list">
+                  <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                  <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                  <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="team-classic">
+              <div class="team-classic-figure"><img src="images/gallery/animate-img-2.jpg" alt="" width="390" height="252"/>
+                <ul class="team-classic-soc-list">
+                  <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                  <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                  <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="team-classic">
+              <div class="team-classic-figure"><img src="images/gallery/animate-img-3.jpg" alt="" width="390" height="252"/>
+                <ul class="team-classic-soc-list">
+                  <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                  <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                  <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                </ul>
+              </div>
+              
+            </div>
+          </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="team-classic">
+                    <div class="team-classic-figure"><img src="images/gallery/animate-img-4.jpg" alt="" width="390" height="252"/>
+                      <ul class="team-classic-soc-list">
+                        <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                        <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                        <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="team-classic">
+                    <div class="team-classic-figure"><img src="images/gallery/animate-img-5.jpg" alt="" width="390" height="252"/>
+                      <ul class="team-classic-soc-list">
+                        <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                        <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                        <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="team-classic">
+                    <div class="team-classic-figure"><img src="images/gallery/animate-img-6.jpg" alt="" width="390" height="252"/>
+                      <ul class="team-classic-soc-list">
+                        <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                        <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                        <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="team-classic">
+                    <div class="team-classic-figure"><img src="images/gallery/_A5A0885.JPG" alt="" width="390" height="252"/>
+                      <ul class="team-classic-soc-list">
+                        <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                        <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                        <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="team-classic">
+                    <div class="team-classic-figure"><img src="images/gallery/_A5A0892.JPG" alt="" width="390" height="252"/>
+                      <ul class="team-classic-soc-list">
+                        <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                        <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                        <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="team-classic">
+                    <div class="team-classic-figure"><img src="images/gallery/_A5A9673.JPG" alt="" width="390" height="252"/>
+                      <ul class="team-classic-soc-list">
+                        <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                        <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                        <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="team-classic">
+                    <div class="team-classic-figure"><img src="images/gallery/_A5A9754.JPG" alt="" width="390" height="252"/>
+                      <ul class="team-classic-soc-list">
+                        <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                        <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                        <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="team-classic">
+                    <div class="team-classic-figure"><img src="images/gallery/_A5A9761.JPG" alt="" width="390" height="252"/>
+                      <ul class="team-classic-soc-list">
+                        <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                        <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                        <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="team-classic">
+                    <div class="team-classic-figure"><img src="images/gallery/_A5A9784.JPG" alt="" width="390" height="252"/>
+                      <ul class="team-classic-soc-list">
+                        <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                        <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                        <li><a class="icon icon-md fa-twitter" href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-lg bg-default">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-md-9 col-lg-7 wow-outer">
+            <div class="wow slideInDown">
+              <h3>Our Impact</h3>
+              <p>Since our foundation, we've been committed to making a difference in the lives of children across Ethiopia. Here's how we've helped so far.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row row-30 justify-content-center">
+          <div class="col-sm-6 col-md-6 col-lg-3 wow-outer">
+            <div class="wow fadeInUp">
+              <article class="box-counter box-counter-modern">
+                <div class="box-counter-main">
+                  <div style="color: #7e179ef9; font-size: 3.5rem; font-weight: 700;">
+                    <span id="studentsCounter">0</span><span id="studentsPlus" style="display: none;">+</span>
+                  </div>
+                </div>
+                <p class="box-counter-title" style="font-size: 1.5rem;">Students Helped</p>
+              </article>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-3 wow-outer">
+            <div class="wow fadeInUp" data-wow-delay=".1s">
+              <article class="box-counter box-counter-modern">
+                <div class="box-counter-main">
+                  <div style="color: #7e179ef9; font-size: 3.5rem; font-weight: 700;">
+                    <span id="schoolsCounter">0</span><span id="schoolsPlus" style="display: none;">+</span>
+                  </div>
+                </div>
+                <p class="box-counter-title" style="font-size: 1.5rem;">Schools Supported</p>
+              </article>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-3 wow-outer">
+            <div class="wow fadeInUp" data-wow-delay=".2s">
+              <article class="box-counter box-counter-modern">
+                <div class="box-counter-main">
+                  <div style="color: #7e179ef9; font-size: 3.5rem; font-weight: 700;">
+                    <span id="volunteersCounter">0</span><span id="volunteersPlus" style="display: none;">+</span>
+                  </div>
+                </div>
+                <p class="box-counter-title" style="font-size: 1.5rem;">Volunteers</p>
+              </article>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-3 wow-outer">
+            <div class="wow fadeInUp" data-wow-delay=".3s">
+              <article class="box-counter box-counter-modern">
+                <div class="box-counter-main">
+                  <div style="color: #7e179ef9; font-size: 3.5rem; font-weight: 700;">
+                    <span id="communitiesCounter">0</span><span id="communitiesPlus" style="display: none;">+</span>
+                  </div>
+                </div>
+                <p class="box-counter-title" style="font-size: 1.5rem;">Communities Reached</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+        <!-- Add this after the main banner section -->
+    <section class="section section-sm bg-default text-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-10 col-lg-8">
+            <h3>Support Our Cause</h3>
+            <p class="text-spacing-05">Your donation can make a real difference in the lives of those we serve. Every contribution helps us continue our mission.</p>
+            <a class="button button-lg button-primary button-winona wow fadeInUp" href="donate.html" data-wow-delay=".2s">
+              <div class="button-winona-text">Donate Now</div><span class="button-winona-overlay"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <!-- Rest of your content remains the same -->
+    <!-- ... -->
+    
+    <!-- Page Footer - Using Web Component -->
+    <site-footer></site-footer>
+    
+    <div class="snackbars" id="form-output-global"></div>
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <!-- Add the components script -->
+    <script src="js/components.js"></script>
+    <script src="js/stat.js"></script>
+    
+    <!-- Add the modal/lightbox container -->
+    <div id="lightboxModal" class="modal-lightbox">
+      <span class="close-lightbox">&times;</span>
+      <img class="modal-content" id="lightboxImage">
+    </div>
+
+    <script src="js/lightbox.js"></script>
+  </body>
+</html>
