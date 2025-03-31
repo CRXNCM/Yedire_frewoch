@@ -1,9 +1,10 @@
-\# Yedire Frewoch Project 📚 \## Overview 🌟 This project is a
-comprehensive web application developed for the Yedire Frewoch
+# Yedire Frewoch Project 📚 
+# Overview 🌟 
+This project is acomprehensive web application developed for the Yedire Frewoch
 organization. It provides a platform for managing educational resources,
 community engagement, and organizational activities.
 
-\## Features ✨ - Resource Management 📋
+## Features ✨ - Resource Management 📋
 
  - Digital library of educational materials  - Document categorization
 and search functionality  - Version control for resources - User
