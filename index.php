@@ -762,7 +762,7 @@ $conn->close();
         
         <div class="text-center mt-5">
           <a href="gallery.php" class="button button-primary button-winona">
-            <div class="button-winona-text">View Full Gallery</div>
+            <div class="button-winona-text">Full Gallery</div>
             <span class="button-winona-overlay"></span>
           </a>
         </div>
@@ -852,8 +852,8 @@ $conn->close();
         <div class="row justify-content-center text-center">
           <div class="col-md-9 col-lg-7 wow-outer">
             <div class="wow slideInDown">
-              <h3>What People Say</h3>
-              <p>Hear from our volunteers, donors, and the communities we serve about the impact of our work.</p>
+              <h3>What People Say About Us</h3>
+              <p>Hear from our volunteers, donors, and the communities we serve about the impact of our work. Their stories inspire us to continue our mission.</p>
             </div>
           </div>
         </div>
@@ -907,7 +907,7 @@ $conn->close();
           <div class="col-md-9 col-lg-7 wow-outer">
             <div class="wow slideInDown">
               <h3>Our Sponsors</h3>
-              <p>We are grateful to these organizations for their generous support of our mission.</p>
+              <p>We are grateful to these organizations for their generous support of our mission. Click on their logos to learn more about them.</p>
             </div>
           </div>
         </div>
