@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 }
 
 // Check if ID is provided
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) { 
     header("Location: manage_volunteers.php");
     exit;
 }
