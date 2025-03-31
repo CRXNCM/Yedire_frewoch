@@ -916,11 +916,14 @@ $conn->close();
           <div class="sponsors-track">
             <?php foreach($sponsors as $sponsor): ?>
               <div class="sponsor-item">
-                <a href="<?php echo htmlspecialchars($sponsor['website_url']); ?>" target="_blank" class="sponsor-link">
-                  <img src="<?php echo htmlspecialchars($sponsor['logo_path']); ?>" 
-                       alt="<?php echo htmlspecialchars($sponsor['name']); ?>" 
-                       class="img-fluid sponsor-logo" 
-                       title="<?php echo htmlspecialchars($sponsor['description']); ?>">
+                <a href="<?php echo htmlspecialchars($sponsor['website_url']); ?>" 
+                   target="_blank" 
+                   class="sponsor-link"
+                   aria-label="Visit <?php echo htmlspecialchars($sponsor['name']); ?>'s website">
+                   <img src="<?php echo htmlspecialchars($sponsor['logo_path']); ?>" 
+                        alt="<?php echo htmlspecialchars($sponsor['name']); ?>" 
+                        class="img-fluid sponsor-logo" 
+                        title="<?php echo htmlspecialchars($sponsor['description']); ?>">
                 </a>
               </div>
             <?php endforeach; ?>
@@ -928,11 +931,14 @@ $conn->close();
             <!-- Duplicate sponsors for continuous loop effect -->
             <?php foreach($sponsors as $sponsor): ?>
               <div class="sponsor-item">
-                <a href="<?php echo htmlspecialchars($sponsor['website_url']); ?>" target="_blank" class="sponsor-link">
-                  <img src="<?php echo htmlspecialchars($sponsor['logo_path']); ?>" 
-                       alt="<?php echo htmlspecialchars($sponsor['name']); ?>" 
-                       class="img-fluid sponsor-logo" 
-                       title="<?php echo htmlspecialchars($sponsor['description']); ?>">
+                <a href="<?php echo htmlspecialchars($sponsor['website_url']); ?>" 
+                   target="_blank" 
+                   class="sponsor-link"
+                   aria-label="Visit <?php echo htmlspecialchars($sponsor['name']); ?>'s website">
+                   <img src="<?php echo htmlspecialchars($sponsor['logo_path']); ?>" 
+                        alt="<?php echo htmlspecialchars($sponsor['name']); ?>" 
+                        class="img-fluid sponsor-logo" 
+                        title="<?php echo htmlspecialchars($sponsor['description']); ?>">
                 </a>
               </div>
             <?php endforeach; ?>
