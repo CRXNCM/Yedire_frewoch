@@ -17,22 +17,22 @@ class SiteHeader extends HTMLElement {
                   <!-- RD Navbar Toggle-->
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                   <!-- RD Navbar Brand-->
-                  <div class="rd-navbar-brand"><a href="index.html"><img class="brand-logo-light" src="images/logo-white.png" alt="" width="207" height="51"/></a></div>
+                  <div class="rd-navbar-brand"><a href="index.php"><img class="brand-logo-light" src="images/logo-white.png" alt="" width="207" height="51"/></a></div>
                 </div>
                 <div class="rd-navbar-main-element">
                   <div class="rd-navbar-nav-wrap">
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
-                      <li class="rd-nav-item ${this.isActive('index.html')}"><a class="rd-nav-link" href="index.html">Home</a></li>
-                      <li class="rd-nav-item ${this.isActive('about-us.html')}"><a class="rd-nav-link" href="about-us.html">About Us</a></li>
-                      <li class="rd-nav-item ${this.isActive('gallery.html')}"><a class="rd-nav-link" href="gallery.html">Gallery</a></li>
-                      <li class="rd-nav-item ${this.isActive('programs.html')}"><a class="rd-nav-link" href="programs.html">Programs</a></li>
-                      <li class="rd-nav-item ${this.isActive('get-involved.html')}"><a class="rd-nav-link" href="get-involved.html">Get Involved</a></li>
-                      <li class="rd-nav-item ${this.isActive('contacts.html')}"><a class="rd-nav-link" href="contacts.html">Contacts</a></li>
+                      <li class="rd-nav-item ${this.isActive('index.php')}"><a class="rd-nav-link" href="index.php">Home</a></li>
+                      <li class="rd-nav-item ${this.isActive('about-us.php')}"><a class="rd-nav-link" href="about-us.php">About Us</a></li>
+                      <li class="rd-nav-item ${this.isActive('gallery.php')}"><a class="rd-nav-link" href="gallery.php">Gallery</a></li>
+                      <li class="rd-nav-item ${this.isActive('programs.php')}"><a class="rd-nav-link" href="programs.php">Programs</a></li>
+                      <li class="rd-nav-item ${this.isActive('get-involved.php')}"><a class="rd-nav-link" href="get-involved.php">Get Involved</a></li>
+                      <li class="rd-nav-item ${this.isActive('contacts.php')}"><a class="rd-nav-link" href="contacts.php">Contacts</a></li>
                       
-                    </ul><a class="button button-primary button-sm" href="donate.html">Donate</a>
+                    </ul><a class="button button-primary button-sm" href="donate.php">Donate</a>
                   </div>
-                </div><a class="button button-primary button-sm" href="donate.html">Donate</a>
+                </div><a class="button button-primary button-sm" href="donate.php">Donate</a>
               </div>
             </div>
           </nav>
@@ -52,7 +52,7 @@ class SiteHeader extends HTMLElement {
   }
 
   isActive(href) {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPage = window.location.pathname.split('/').pop() || 'index.php';
     return currentPage === href ? 'active' : '';
   }
 }
@@ -69,14 +69,14 @@ class SiteFooter extends HTMLElement {
         <div class="container wow-outer">
           <div class="wow fadeIn">
             <div class="row row-50 row-lg-60">
-              <div class="col-12"><a href="index.html"><img src="images/logo-white.png" alt="" width="207" height="51"/></a></div>
+              <div class="col-12"><a href="index.php"><img src="images/logo-white.png" alt="" width="207" height="51"/></a></div>
               <div class="col-12">
                 <ul class="footer-minimal-nav">
-                  <li><a href="about-us.html">About Us</a></li>
+                  <li><a href="about-us.php">About Us</a></li>
                   <li><a href="#">Causes</a></li>
-                  <li><a href="gallery.html">Gallery</a></li>
+                  <li><a href="gallery.php">Gallery</a></li>
                   <li><a href="#">Team</a></li>
-                  <li><a href="contacts.html">Contacts</a></li>
+                  <li><a href="contacts.php">Contacts</a></li>
                 </ul>
               </div>
               <div class="col-12">
@@ -89,8 +89,7 @@ class SiteFooter extends HTMLElement {
                 </ul>
               </div>
             </div>
-            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>Helper</span><span>.&nbsp;</span><span>All Rights Reserved.</span></p>
-          </div>
+            </div>
         </div>
       </footer>
     `;
