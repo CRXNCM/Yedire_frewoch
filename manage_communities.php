@@ -26,7 +26,7 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     $stmt->bind_param("i", $id);
     
     if ($stmt->execute()) {
-        $success_message = "Community deleted successfully.";
+        $success_message = "Communiy deleted successfully.";
     } else {
         $error_message = "Error deleting community: " . $conn->error;
     }
